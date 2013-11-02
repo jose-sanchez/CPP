@@ -1,0 +1,138 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="WpfApplication1.Client"
+	x:Name="Window"
+	Title="Client"
+	Width="640" Height="480" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:WpfApplication1" >
+    <Window.Resources>
+        <CollectionViewSource x:Key="compradorSet1ViewSource" d:DesignSource="{d:DesignInstance my:CompradorSet, CreateList=True}" />
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Rectangle Margin="8" Fill="#FF210A0D" Opacity="0.9">
+        	<Rectangle.Stroke>
+        		<ImageBrush/>
+        	</Rectangle.Stroke>
+        </Rectangle>
+        <Grid  Margin="57,41,152.67,0" x:Name="grid1" VerticalAlignment="Top" Style="{DynamicResource GridSombra}">
+            <Grid.ColumnDefinitions>
+            	<ColumnDefinition Width="Auto" />
+            	<ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            	<RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="Nombre:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="0" Height="23" HorizontalAlignment="Left" Margin="3" x:Name="tbName" Text="{Binding Path=Name}" VerticalAlignment="Center" Width="120" />
+            <Label Content="Apellido:" Grid.Column="1" HorizontalAlignment="Left" Margin="134,-2,0,8" d:LayoutOverrides="Height" />
+            <TextBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,4.48,0.1,4.48" x:Name="tbSurname" Text="{Binding Surname, Mode=TwoWay}" Width="120" />
+            <Label Content="Telefono M:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="3" x:Name="telefonoMTextBox" Text="{Binding PhoneMain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewTextInput="OnPreviewTextBox" />
+            <Label Content="Telefono F:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="134,3,0,3" d:LayoutOverrides="Height, VerticalMargin" />
+            <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="206.1,4.48,0,4.48" x:Name="telefonoFTextBox" Text="{Binding PhoneSecond, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" PreviewTextInput="OnPreviewTextBox" />
+            <Label Content="Direccion:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Left" Margin="3" x:Name="direccionTextBox" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+            <Label Content="Descripcion:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="5" Height="90" Margin="3,3,8,3" x:Name="descripcionTextBox" Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+            <Label Content="Email:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="134,1.52,0,4.48" d:LayoutOverrides="Height" />
+            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Margin="0,4.48,0.1,4.48" x:Name="tbEmail" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" PreviewLostKeyboardFocus="txtEmail_LostFocus" />
+        </Grid>
+        <TabControl Height="172.12" Margin="57,0,152.67,33" Style="{DynamicResource SimpleTabControl}" VerticalAlignment="Bottom">
+        	<TabItem Header="Productos Buscados" GotFocus="tabRequestedProduct_LostFocus">
+        		<Grid Background="#FFE5E5E5" Height="152">
+                    <ListView Height="132" HorizontalAlignment="Left" Margin="3,5,0,0" Name="lvProductSearched" VerticalAlignment="Top" Width="384" MouseDoubleClick="lvProductSearched_MouseDoubleClick"  >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel FlowDirection="LeftToRight"  Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Producto}"></TextBlock>
+                                    <TextBlock Text="-"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Marca}"></TextBlock>
+                                    <TextBlock Text="-"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Modelo}"></TextBlock>
+                                   
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ContextMenu>
+                            <ContextMenu x:Name="clientmenu">
+                                <MenuItem Header="Borrar Busqueda" Click="BorrarMouseDown">
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        	<TabItem Header="Productos Solicitados" Height="23.96"  VerticalAlignment="Top" GotFocus="tabRequestedProduct_GotFocus" >
+        		<Grid Background="#FFE5E5E5">
+                    <ListView Height="132" HorizontalAlignment="Left" Margin="3,5,0,0" Name="lvProductRequested" VerticalAlignment="Top" Width="384" MouseDoubleClick="lvProductRequested_MouseDoubleClick" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="180" Header="Producto" DisplayMemberBinding="{Binding Path=Name}" />
+                                <GridViewColumn Width="100" Header="Precio Cliente">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBox Text="{Binding Path=ClientPrice}" Width="100" PreviewTextInput="OnPreviewTextBox"></TextBox>
+                                                <!--<my:EditBox Height="25" Value="{Binding Path=ClientPrice}" IsEnabled="True" Visibility="Visible" Focusable="True" />-->
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" Header="Correo Enviado" DisplayMemberBinding="{Binding Path=ClientPrice}" />
+
+                            </GridView>
+                            </ListView.View>
+
+                                <!--<ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel FlowDirection="LeftToRight"  Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Producto}"></TextBlock>
+                                    <TextBlock Text="-"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Marca}"></TextBlock>
+                                    <TextBlock Text="-"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Modelo}"></TextBlock>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>-->
+
+                        <ListView.ContextMenu>
+                            <ContextMenu x:Name="clientproductrequestedmenu">
+                                <MenuItem Header="Borrar" Click="BorrarPDMouseDown">
+                                </MenuItem>
+                                <MenuItem Header="Enviar Correo" x:Name="MenuSendEmail" Click="MenuSendEmail_Click">
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+
+
+                </Grid>
+        	</TabItem>
+        	<TabItem Header="Productos Comprados" Style="{DynamicResource SimpleTabItem}" Height="20.96" VerticalAlignment="Bottom" BorderThickness="3" GotFocus="tabRequestedProduct_LostFocus">
+        		<Grid Background="#FFE5E5E5">
+        			<ListView Margin="8" Name="ListSoldProducts" MouseDoubleClick="ListSoldProducts_MouseDoubleClick">
+        				<ListView.View>
+        					<GridView>
+        						<GridViewColumn Header="Producto" Width="280" DisplayMemberBinding="{Binding Path=Name}"/>
+                                <GridViewColumn Header="Precio Venta" Width="100" DisplayMemberBinding="{Binding Path=FinalPrice}"/>
+        					</GridView>
+        				</ListView.View>
+        			</ListView>
+        		</Grid>
+        	</TabItem>
+        </TabControl>
+        <Button Content="Guardar" Height="23" HorizontalAlignment="Left" Margin="481,352,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="save_Click" />
+        <Button Content="Añadir Busqueda" Height="25" HorizontalAlignment="Left" Margin="481,257,0,0" Name="btAddSearch" VerticalAlignment="Top" Width="105" Click="btAddSearch_Click" />
+        <Button Content="Añadir Producto" Height="25" HorizontalAlignment="Left" Margin="480,288,0,0" Name="btAddProduct" VerticalAlignment="Top" Width="105" Click="btAddProduct_Click" />
+        <Button Content="Comprar Producto" Height="23" HorizontalAlignment="Left" Margin="481,319,0,0" Name="btBuyProduct" VerticalAlignment="Top" Width="104" Visibility="Hidden" Click="btBuyProduct_Click" />
+    </Grid>
+</Window>

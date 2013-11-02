@@ -1,0 +1,140 @@
+﻿
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 09/05/2013 18:52:55
+-- Generated from EDMX file: C:\Users\josehp\documents\visual studio 2010\Projects\Camiher\WpfApplication1\Model1.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'ProveedorSet'
+CREATE TABLE [ProveedorSet] (
+[Id] nvarchar(32) NOT NULL,
+[Nombre] nvarchar(100)  NOT NULL,
+[Apellido] nvarchar(100)  NOT NULL,
+[TelefonoM] nvarchar(20)  NOT NULL,
+[TelefonoF] nvarchar(20)  NOT NULL,
+[Direccion] nvarchar(4000)  NOT NULL,
+[Descripcion] nvarchar(4000)  NOT NULL,
+[Email] nvarchar(100)  NOT NULL
+);
+GO
+
+-- Creating table 'CompradorSet'
+CREATE TABLE [CompradorSet] (
+[Id] nvarchar(32) NOT NULL,
+[Nombre] nvarchar(4000)  NOT NULL,
+[Apellido] nvarchar(4000)  NOT NULL,
+[TelefonoM] nvarchar(4000)  NOT NULL,
+[TelefonoF] nvarchar(4000)  NOT NULL,
+[Direccion] nvarchar(4000)  NOT NULL,
+[Descripcion] nvarchar(4000)  NOT NULL,
+[Email] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'ProductsSet'
+CREATE TABLE [ProductsSet] (
+[Producto] nvarchar(4000)  NOT NULL,
+[Marca] nvarchar(4000)  NOT NULL,
+[Modelo] nvarchar(4000)  NOT NULL,
+[Año] nvarchar(4000)  NOT NULL,
+[Potencia] nvarchar(4000)  NOT NULL,
+[Peso] nvarchar(4000)  NOT NULL,
+[Descripcion] nvarchar(4000)  NOT NULL,
+[Precio] nvarchar(4000)  NOT NULL,
+[Cantidad] nvarchar(4000)  NOT NULL,
+[Id] nvarchar(32) NOT NULL,
+[Enventa] nvarchar(4000)  NOT NULL,
+[Enbusca] nvarchar(4000)  NOT NULL,
+[Proveedor_ID] nvarchar(4000)   NULL,
+);
+GO
+
+-- Creating table 'FotosSet'
+CREATE TABLE [FotosSet] (
+[Id] nvarchar(32) NOT NULL,
+[Nombre] nvarchar(4000)  NOT NULL,
+[Path] nvarchar(4000)  NOT NULL,
+[Orden] nvarchar(4000)  NOT NULL,
+[Product_ID] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'VentaSet'
+CREATE TABLE [VentaSet] (
+[Id] nvarchar(32) NOT NULL,
+[PrecioDado] nvarchar(4000)  NOT NULL,
+[PrecioOfrecido] nvarchar(4000)  NOT NULL,
+[CorreoEnviado] nvarchar(4000)  NOT NULL,
+[FechaUltimoCorreo] nvarchar(4000)  NOT NULL,
+[PrecioFinal] nvarchar(4000)  NOT NULL,
+[Comprador_Id] int  NOT NULL,
+[Product_Id] int  NOT NULL
+
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'ProveedorSet'
+ALTER TABLE [ProveedorSet]
+ADD CONSTRAINT [PK_ProveedorSet]
+PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'CompradorSet'
+ALTER TABLE [CompradorSet]
+ADD CONSTRAINT [PK_CompradorSet]
+PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'ProductsSet'
+ALTER TABLE [ProductsSet]
+ADD CONSTRAINT [PK_ProductsSet]
+PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'FotosSet'
+ALTER TABLE [FotosSet]
+ADD CONSTRAINT [PK_FotosSet]
+PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'VentaSet'
+ALTER TABLE [VentaSet]
+ADD CONSTRAINT [PK_VentaSet]
+PRIMARY KEY ([Id] );
+GO
+
+
+
+
+
+
+
+
+
+
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

@@ -1,0 +1,40 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="WpfApplication1.UCClientList"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="clientSet1ViewSource" />
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource clientSet1ViewSource}">
+        <ListView  Height="162" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="51,55,0,0" Name="clientSet1ViewSource" SelectedValuePath="Id" SelectionMode="Single" VerticalAlignment="Top" Width="184" SelectionChanged="clientSet1ListView_SelectionChanged" MouseDoubleClick="clientSetListView_MouseDoubleClick">
+            <ListView.ContextMenu>
+                <ContextMenu x:Name="clientmenu">
+                    <MenuItem Header="Agregar cliente" Click="MenuItem_MouseDown" IsEnabled="True" >
+                    </MenuItem>
+                    <MenuItem Header="Editar cliente" Click="Editar_Click">
+                    </MenuItem>
+                    <MenuItem Header="Borrar cliente" Click="BorrarMouseDown">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel FlowDirection="LeftToRight"  Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                        <TextBlock Text=" "></TextBlock>
+                        <TextBlock Text="{Binding Path=Surname}"></TextBlock>
+                        <TextBlock Text=" "></TextBlock>
+                        <TextBlock Text="{Binding Path=PhoneMain}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </Grid>
+</UserControl>

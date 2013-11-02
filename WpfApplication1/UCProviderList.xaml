@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WpfApplication1.UCProviderList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="providerSet1ViewSource" />
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource providerSet1ViewSource}">
+        <ListView  Height="162" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="51,55,0,0" Name="providerSet1ViewSource" SelectedValuePath="Id" SelectionMode="Single" VerticalAlignment="Top" Width="184" SelectionChanged="ProductsSetListView_SelectionChanged" MouseDoubleClick="proveedorSetListView_MouseDoubleClick">
+            <ListView.ContextMenu>
+                <ContextMenu x:Name="providermenu">
+                    <MenuItem Header="Agregar proveedor" Click="MenuItem_MouseDown" IsEnabled="True" >
+                    </MenuItem>
+                    <MenuItem Header="Editar proveedor">
+                    </MenuItem>
+                    <MenuItem Header="Borrar proveedor">
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel FlowDirection="LeftToRight"  Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
+                        <TextBlock Text=" "></TextBlock>
+                        <TextBlock Text="{Binding Path=Apellidos}"></TextBlock>
+                        <TextBlock Text=" tlf:"></TextBlock>
+                        <TextBlock Text="{Binding Path=TelefonoM}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </Grid>            
+   
+</UserControl>
